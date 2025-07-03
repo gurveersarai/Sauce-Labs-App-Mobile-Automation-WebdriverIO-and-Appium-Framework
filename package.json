@@ -1,0 +1,11 @@
+{
+  "name": "Sauce Labs Automation",
+  "type": "module",
+  "devDependencies": {
+    "@wdio/cli": "^9.16.2",
+    "@wdio/local-runner": "^9.16.2",
+    "@wdio/mocha-framework": "^9.16.2",
+    "@wdio/spec-reporter": "^9.16.2",
+    "appium-uiautomator2-driver": "^4.2.4"
+  }
+}

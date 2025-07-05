@@ -1,3 +1,5 @@
+import path from 'path'
+const androidAppPath = path.join(process.cwd(), 'app/mda-2.2.0-25.apk');
 export const config = {
   //
   // ====================
@@ -5,6 +7,8 @@ export const config = {
   // ====================
   // WebdriverIO supports running e2e tests as well as unit and component tests.
   runner: "local",
+
+  
   //
   // ==================
   // Specify Test Files
@@ -20,7 +24,7 @@ export const config = {
   // The path of the spec files will be resolved relative from the directory of
   // of the config file unless it's absolute.
   //
-  specs: ["./test/specs/**/*.js"],
+  specs: ["./test/specs/scrollTest.js"],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -51,10 +55,12 @@ export const config = {
     {
       // capabilities for local Appium web tests on an Android Emulator
       platformName: "Android",
-      browserName: "Chrome",
-      "appium:deviceName": "Pixel 7 API 31",
-      "appium:platformVersion": "12.0",
+      "appium:deviceName": "Pixel 8 API 31",
+      "appium:platformVersion": "14.0",
       "appium:automationName": "UiAutomator2",
+      "appium:app": androidAppPath, // Path to the Android app
+      "appium:chromedriverAutoDownload": true,
+      "appium:appWaitDuration": 30000, // Automatically download the ChromeDriver
     },
   ],
 
@@ -105,7 +111,10 @@ export const config = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-  services: ["appium"],
+  services: ['appium'],
+  hostname: 'localhost',
+  port: 4723,
+  
   //
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber

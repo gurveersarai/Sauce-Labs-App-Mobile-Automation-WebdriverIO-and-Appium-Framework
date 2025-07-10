@@ -39,7 +39,15 @@ class commonElements {
   }
 
   get pageTitle() {
-    return $(~"title");
+    return $("~title");
+  }
+
+  get footer() {
+    return $("id=com.saucelabs.mydemoapp.android:id/socialLL");
+  }
+
+  get facebookLink() {
+    return $("~Facebook");
   }
 }
 

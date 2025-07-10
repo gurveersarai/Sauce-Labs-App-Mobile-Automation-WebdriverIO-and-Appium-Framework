@@ -24,7 +24,7 @@ export const config = {
   // The path of the spec files will be resolved relative from the directory of
   // of the config file unless it's absolute.
   //
-  specs: ["./test/specs/scrollTest.js"],
+  specs: ["./test/specs/productOverviewTest.js"],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -60,7 +60,10 @@ export const config = {
       "appium:automationName": "UiAutomator2",
       "appium:app": androidAppPath, // Path to the Android app
       "appium:chromedriverAutoDownload": true,
-      "appium:appWaitDuration": 30000, // Automatically download the ChromeDriver
+      "appium:appWaitDuration": 30000,
+      "appium:appActivity": "com.saucelabs.mydemoapp.android.view.activities.SplashActivity",
+      "appium:appWaitActivity": "com.saucelabs.mydemoapp.android.view.activities.*",  // Automatically download the ChromeDriver
+      "appium:noReset": false, // Do reset app state between tests
     },
   ],
 

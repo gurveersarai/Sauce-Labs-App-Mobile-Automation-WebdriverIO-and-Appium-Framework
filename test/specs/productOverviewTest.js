@@ -17,18 +17,26 @@ describe("Product Overview Functionality", () => {
         chaiExpect(title).to.equal("Products");
     });
 
-    it.only("should be able to rate a product", async () => {
-       const ratings = await $$('android:new UiSelector().resourceId("com.saucelabs.mydemoapp.android:id/rattingV').$$('.android.widget.ImageView');
+    it("should be able to rate a product", async () => {
+        const ratingContainer = await $('android=new UiSelector().resourceId("com.saucelabs.mydemoapp.android:id/rattingV")');
+        const ratings = await ratingContainer.$$(`android.widget.ImageView`);
+        
         const ratingCount = ratings.length;
+       
         if(ratingCount >= 5) {
             await ratings[4].click();
             const DialogDisplayed = productsPage.isDialogDisplayed();
-            await console.log(await $('id=com.saucelabs.mydemoapp.android:id/sortTV').getText());
             chaiExpect(await DialogDisplayed).to.be.true;
         }
         await $('id=com.saucelabs.mydemoapp.android:id/closeBt').click();
-        const DialogDisplayed = await productsPage.isDialogDisplayed();
-        chaiExpect(await DialogDisplayed).to.be.false;
+        await browser.waitUntil(async () => {
+            return !(await productsPage.isDialogDisplayed());
+         }, {
+            timeout: 10000,
+            timeoutMsg: 'Dialog did not close within 5 seconds'
+         });
+         const isDialogVisible = await productsPage.isDialogDisplayed();
+         chaiExpect(await isDialogVisible).to.be.false;
 
     });
 

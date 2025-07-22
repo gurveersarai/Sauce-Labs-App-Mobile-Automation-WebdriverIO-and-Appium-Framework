@@ -14,9 +14,13 @@ class productsPage {
         return $$('id=com.saucelabs.mydemoapp.android:id/productIV')
     }
 
+    get sortIcon() {
+        return $('id=com.saucelabs.mydemoapp.android:id/sortIV')
+    }
+
     async isDialogDisplayed() {
-        const dialog = await $('.android.widget.FrameLayout');
-        const dialogFlag = false;
+        const dialog = await $('id=com.saucelabs.mydemoapp.android:id/sortTV'); 
+        let dialogFlag = false;
         if (!(await dialog.isDisplayed())) {
             console.log("Dialog is not Displayed") // Wait for the dialog to appear
             

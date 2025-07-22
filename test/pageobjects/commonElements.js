@@ -49,6 +49,8 @@ class commonElements {
   get facebookLink() {
     return $("~Facebook");
   }
+
+  
 }
 
 export default new commonElements();

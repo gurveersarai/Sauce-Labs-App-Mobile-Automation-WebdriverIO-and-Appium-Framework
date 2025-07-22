@@ -16,8 +16,41 @@ class sortingPopup {
         return $('~Descending order by name')
     }
 
-    g
+    async sortingPopupClosed() {
+        const sortText = await $('android=new UiSelector().className("android.view.ViewGroup")')
+        .$(`id=com.saucelabs.mydemoapp.android:id/sortTV`)
+        .waitForDisplayed
+        ({
+            reverse: true,
+            timeout:5000,
+            timeoutMsg: 'Sort popup did not disappear after sorting by ascending price'
+        });
+    }
 
+    async sortAscPrice() {
+        const productPrices = await productsPage.productPrices();
+        const formattedPrice = productPrices.map(price => parseFloat(price.replace('$', '')));
+        const isSorted = formattedPrice.every((price, index, arr) => {
+            return index === 0 || price >= arr[index - 1];
+        })
+    }
+
+    async sortDescPrice() {
+
+        const productPrices = await productsPage.productPrices();
+        const formattedPrice = productPrices.map(price => parseFloat(price.replace('$', '')));
+        const isSorted = formattedPrice.every((price, index, arr) => {
+            return index === 0 || price <= arr[index - 1];
+        })
+    }
+
+    async sortByDescName() {
+        const productNames = await productsPage.productNames();
+        const isSorted = productNames.every((name, index, arr) => {
+            return index === 0 || name.localeCompare(arr[index - 1]) <= 0;
+        });
+        return isSorted;
+    }
 }
 
 export default new sortingPopup();

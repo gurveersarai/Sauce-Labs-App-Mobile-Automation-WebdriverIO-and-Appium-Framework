@@ -8,7 +8,7 @@ class productDetails {
     }
 
     get addToCartButton() {
-        return $('~add to cart button');
+        return $('~Tap to add product to cart');
     }
 
     get productPrice() {
@@ -54,7 +54,8 @@ class productDetails {
     }
 
     async addToCart() {
-        if (parseInt(this.quantityAccount.getText()) >= 1 ) {
+        console.log("Current Quantity: " + parseInt(await this.quantityAccount.getText()));
+        if (parseInt(await this.quantityAccount.getText()) >= 1 ) {
         await this.addToCartButton.click();
         console.log("Products added to cart"); 
         }

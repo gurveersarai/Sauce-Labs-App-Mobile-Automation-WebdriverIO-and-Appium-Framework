@@ -1,4 +1,4 @@
-import { browser } from "@wdio/globals";
+import { $, browser } from "@wdio/globals";
 
 // This class contains common elements used across different page objects in the application.
 // It provides methods to access elements like the LHN (Left Hand Navigation), Cart, CartCount, and various links.
@@ -9,7 +9,7 @@ class commonElements {
   }
 
   get Cart() {
-    return $("~View cart");
+    return $("id=com.saucelabs.mydemoapp.android:id/cartIV");
   }
 
   get CartCount() {
@@ -50,6 +50,9 @@ class commonElements {
     return $("~Facebook");
   }
 
+  get catalogLink() {
+    return $('android=new UiSelector().text("Catalog")');
+  }
   
 }
 

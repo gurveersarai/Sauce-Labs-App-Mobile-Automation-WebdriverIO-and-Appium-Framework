@@ -1,9 +1,9 @@
-class cart {
+class cartPage {
 
     get noItemsText() {
-        return $('id=com.saucelabs.mydemoapp.android:id/noItemsTV');
+        return $('id=com.saucelabs.mydemoapp.android:id/noItemTitleTV');
     }
-
+    
     get removeCTA() {
         return $('~Removes product from cart')
     }
@@ -17,27 +17,23 @@ class cart {
     }
 
     get checkoutCTA() {
-        return $('~Checkout CTA');
+        return $('id=com.saucelabs.mydemoapp.android:id/cartBt');
     }
 
-    get cartTitle() {
-        return $('id=com.saucelabs.mydemoapp.android:id/productTV');
+    get checkoutTitle() {
+        return $('id=com.saucelabs.mydemoapp.android:id/checkoutTitleTV');
     }
-    com.saucelabs.mydemoapp.android:id/productTV
-
-    get firstNameErrorMessage() {
-        return $('id=com.saucelabs.mydemoapp.android:id/firstNameErrorTV');
-    }
-
+    
     async isCartEmpty() {
-        if (await this.noItemsText.isDisplayed()) {
-            console.log("Cart is empty");
+        try {
+            await this.noItemsText.waitForDisplayed({ timeout: 5000});
+            console.log('Cart is empty');
             return true;
-        }
-        else {
-            console.log("Cart is not empty");
+        } catch {
+            console.log('Cart is not empty');
             return false;
         }
+       
     }
 
     async cartDetails() {
@@ -50,4 +46,4 @@ class cart {
     }
     
 }
- export default new cart();
+ export default new cartPage();

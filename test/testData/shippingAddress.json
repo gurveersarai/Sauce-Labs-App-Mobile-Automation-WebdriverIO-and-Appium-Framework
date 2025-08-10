@@ -1,13 +1,13 @@
 {
     
         "shippingAddress": {
-            "Full Name" : "John Smith",
-            "Address Line 1" : "123 Fake St",
-            "Address Line 2" : "Apt 4C",
-            "City": "New York",
-            "State": "NY",
-            "Zip Code": "10001",
-            "Country": "USA"
+            "fullName" : "John Smith",
+            "addressLine1" : "123 Fake St",
+            "addressLine2" : "Apt 4C",
+            "city": "New York",
+            "state": "NY",
+            "zipCode": "10001",
+            "country": "USA"
         }
     
 }

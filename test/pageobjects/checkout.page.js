@@ -1,4 +1,4 @@
-class checkout {
+class checkoutPage {
     get checkoutTitle() {
         return $('id=com.saucelabs.mydemoapp.android:id/checkoutTitleTV');
     }
@@ -19,14 +19,17 @@ class checkout {
         return $('id=com.saucelabs.mydemoapp.android:id/paymentBtn');
     }
 
-    async enterFormDetails(firstName, lastName, addressLine, addressLine2, city, state, zipCode, country) {
-        await $('id=com.saucelabs.mydemoapp.android:id/firstNameET').setValue(firstName);
-        await $('id=com.saucelabs.mydemoapp.android:id/lastNameET').setValue(lastName);
-        await $('id=com.saucelabs.mydemoapp.android:id/addressLine1ET').setValue(addressLine);
-        await $('id=com.saucelabs.mydemoapp.android:id/addressLine2ET').setValue(addressLine2);
+    get fullNameErrorMessage() {
+        return $('id=com.saucelabs.mydemoapp.android:id/fullNameErrorTV');
+    }
+
+    async enterFormDetails({fullName, addressLine1, addressLine2, city, state, zipCode, country}) {
+        await $('id=com.saucelabs.mydemoapp.android:id/fullNameET').setValue(fullName);
+        await $('id=com.saucelabs.mydemoapp.android:id/address1ET').setValue(addressLine1);
+        await $('id=com.saucelabs.mydemoapp.android:id/address2ET').setValue(addressLine2);
         await $('id=com.saucelabs.mydemoapp.android:id/cityET').setValue(city);
         await $('id=com.saucelabs.mydemoapp.android:id/stateET').setValue(state);
-        await $('id=com.saucelabs.mydemoapp.android:id/zipCodeET').setValue(zipCode);
+        await $('id=com.saucelabs.mydemoapp.android:id/zipET').setValue(zipCode);
         await $('id=com.saucelabs.mydemoapp.android:id/countryET').setValue(country);
     }
 

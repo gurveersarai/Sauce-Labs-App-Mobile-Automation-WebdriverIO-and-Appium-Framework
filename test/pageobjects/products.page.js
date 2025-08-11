@@ -18,6 +18,10 @@ class productsPage {
         return $('id=com.saucelabs.mydemoapp.android:id/sortIV')
     }
 
+    get ratingContainer() {
+        return $('android=new UiSelector().resourceId("com.saucelabs.mydemoapp.android:id/rattingV")');
+    }
+
     async isDialogDisplayed() {
         const dialog = await $('id=com.saucelabs.mydemoapp.android:id/sortTV'); 
         let dialogFlag = false;

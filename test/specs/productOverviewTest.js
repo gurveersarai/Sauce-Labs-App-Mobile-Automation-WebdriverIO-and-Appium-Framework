@@ -3,13 +3,19 @@ import {expect as chaiExpect} from "chai";
 import productsPage from "../pageobjects/products.page";
 import appLaunch from "../helpers/appLaunch.js";
 import productsDetailsPage from "../pageobjects/productsDetails.page.js";
+import tearDown from "../helpers/tearDown.js";
 describe("Product Overview Functionality", () => {
+    
     beforeEach(async () => {
         // Navigate to the page that requires scrolling
         await appLaunch.appLaunch();
         await console.log('App launched successfully');
     
-    })
+    });
+
+    afterEach(async () => {
+        await tearDown.tearDown();
+    });
 
     it ('should be able to exact title of the product overview page', async () => {
         await commonElements.pageTitle.waitForDisplayed();
@@ -18,9 +24,8 @@ describe("Product Overview Functionality", () => {
     });
 
     it("should be able to rate a product", async () => {
-        const ratingContainer = await $('android=new UiSelector().resourceId("com.saucelabs.mydemoapp.android:id/rattingV")');
+        const ratingContainer = await productsPage.ratingContainer;
         const ratings = await ratingContainer.$$(`android.widget.ImageView`);
-        
         const ratingCount = ratings.length;
        
         if(ratingCount >= 5) {
@@ -60,7 +65,6 @@ describe("Product Overview Functionality", () => {
         await productsPage.productImages[0].click()
         const productPageTitle = await productsDetailsPage.productTitle.getText();
         chaiExpect(await productPageTitle).to.equal("Sauce Labs Backpack");
-        
     });
 
 });

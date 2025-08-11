@@ -1,9 +1,11 @@
+import appLaunch from "../helpers/appLaunch";
 import goToLogin from "../helpers/goToLogin"
 import commonElements from "../pageobjects/commonElements";
 
 describe("Logout Functionality", () => {
+    
     Before(async () => {
-        //Login before testing logout
+        await appLaunch.appLaunch();
         await goToLogin.goToLogin();
         await loginPage.Login("tomsmith", "SuperSecretPassword!");
     })

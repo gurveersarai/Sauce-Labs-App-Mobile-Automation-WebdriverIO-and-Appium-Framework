@@ -2,11 +2,13 @@ import appLaunch from "../helpers/appLaunch.js";
 import commonElements from "../pageobjects/commonElements.js";
 import productsPage from "../pageobjects/products.page.js";
 describe("Scroll Functionality", () => {
+    
     beforeEach(async () => {
         // Navigate to the page that requires scrolling
         await appLaunch.appLaunch();
         await console.log('App launched successfully');
     });
+
 
     it("should be able to scroll to the bottom of the page", async() => {
         await commonElements.pageTitle.isDisplayed();

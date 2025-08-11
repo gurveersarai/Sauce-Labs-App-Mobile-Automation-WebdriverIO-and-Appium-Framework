@@ -1,6 +1,17 @@
+import appLaunch from "../helpers/appLaunch";
+import tearDown from "../helpers/tearDown";
 import productsDetailsPage from "../pageobjects/productsDetails.page";
+import {expect as chaiExpect} from "chai";
 
 describe("Product Page Functionality", () => {
+
+    beforeEach(async () => {
+        await appLaunch.appLaunch();
+    })
+
+    afterEach(async () => {
+        await tearDown.tearDown();
+    })
 
     it ("should be able to extract the product title", async () => {
         await productsDetailsPage.productTitle.waitForDisplayed();

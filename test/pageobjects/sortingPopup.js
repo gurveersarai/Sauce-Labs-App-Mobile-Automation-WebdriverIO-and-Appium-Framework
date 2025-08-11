@@ -1,11 +1,11 @@
 class sortingPopup {
 
     get sortByAscPrice() {
-        return $("~Sort by ascending price");
+        return $("~Ascending order by price");
     }
 
     get sortByDescPrice() { 
-        return $("~Sort by descending price");
+        return $("~Descending order by price");
     }
 
     get selectedIcon() {
@@ -28,7 +28,7 @@ class sortingPopup {
     }
 
     async sortAscPrice() {
-        const productPrices = await productsPage.productPrices();
+        const productPrices = await productPage.productPrices();
         const formattedPrice = productPrices.map(price => parseFloat(price.replace('$', '')));
         const isSorted = formattedPrice.every((price, index, arr) => {
             return index === 0 || price >= arr[index - 1];

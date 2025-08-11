@@ -23,6 +23,10 @@ class checkoutPage {
         return $('id=com.saucelabs.mydemoapp.android:id/fullNameErrorTV');
     }
 
+    get reviewOrderText() {
+        return $('id=com.saucelabs.mydemoapp.android:id/enterShippingAddressTV')
+    }
+
     async enterFormDetails({fullName, addressLine1, addressLine2, city, state, zipCode, country}) {
         await $('id=com.saucelabs.mydemoapp.android:id/fullNameET').setValue(fullName);
         await $('id=com.saucelabs.mydemoapp.android:id/address1ET').setValue(addressLine1);
@@ -42,8 +46,8 @@ class checkoutPage {
         const address = await this.confirmationAddress.getText();
         const deliveryCourier = await $('id=com.saucelabs.mydemoapp.android:id/dhlTV').getText();
         const arrivalTime = await $('id=com.saucelabs.mydemoapp.android:id/arrivalTV').getText();
-        const deliveryTime = await $('id=com.saucelabs.mydemoapp.android:id/arrivalTV').getText();
-        return `\n${address}\n${deliveryCourier}\n${arrivalTime}\n${deliveryTime}`;
+        const deliveryCost = await $('id=com.saucelabs.mydemoapp.android:id/amountTV').getText();
+        return `\n${address}\n${deliveryCourier}\n${arrivalTime}\n${deliveryCost}`;
     }
 
     async purchaseTotal() {

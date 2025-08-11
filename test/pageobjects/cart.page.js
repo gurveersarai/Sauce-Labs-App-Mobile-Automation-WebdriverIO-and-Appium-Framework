@@ -20,8 +20,8 @@ class cartPage {
         return $('id=com.saucelabs.mydemoapp.android:id/cartBt');
     }
 
-    get checkoutTitle() {
-        return $('id=com.saucelabs.mydemoapp.android:id/checkoutTitleTV');
+    get cartTitle() {
+        return $('id=com.saucelabs.mydemoapp.android:id/productTV');
     }
     
     async isCartEmpty() {

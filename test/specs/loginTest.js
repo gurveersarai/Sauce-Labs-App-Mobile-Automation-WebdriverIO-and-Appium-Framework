@@ -2,11 +2,17 @@ import { expect } from "@wdio/globals";
 import loginPage from "../pageobjects/login.page.js";
 import SecurePage from "../pageobjects/secure.page.js";
 import goToLogin from "../helpers/goToLogin.js";
+import tearDown from "../helpers/tearDown.js";
 
 describe("Login Functionality", () => {
+  
   beforeEach(async () => {
     // Navigate to the login page before each test
     await goToLogin.goToLogin();
+  });
+
+  afterEach(async () => {
+    await tearDown.tearDown();
   });
   
   it("should login with valid credentials", async () => {

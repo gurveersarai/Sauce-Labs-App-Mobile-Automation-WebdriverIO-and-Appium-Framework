@@ -24,7 +24,7 @@ export const config = {
   // The path of the spec files will be resolved relative from the directory of
   // of the config file unless it's absolute.
   //
-  specs: ["./test/specs/checkoutFormTest.js"],
+  specs: ["./test/specs/filterTest.js"],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -45,7 +45,7 @@ export const config = {
   // and 30 processes will get spawned. The property handles how many capabilities
   // from the same test should run tests.
   //
-  maxInstances: 10,
+  maxInstances: 1,
   //
   // If you have trouble getting all important capabilities together, check out the
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -55,7 +55,7 @@ export const config = {
     {
       // capabilities for local Appium web tests on an Android Emulator
       platformName: "Android",
-      "appium:deviceName": "Pixel 8 API 31",
+      "appium:deviceName": "Pixel 8 API 34",
       "appium:platformVersion": "14.0",
       "appium:automationName": "UiAutomator2",
       "appium:app": androidAppPath, // Path to the Android app

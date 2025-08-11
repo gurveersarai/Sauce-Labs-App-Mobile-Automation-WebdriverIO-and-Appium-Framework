@@ -9,19 +9,23 @@ class paymentPage {
     }
 
     get masterCardIcon() {
-        return $('~MasterCard');
+        return $('~Mastercard');
     }
-
+    
     get reviewOrderCTA() {
         return $('id=com.saucelabs.mydemoapp.android:id/paymentBtn');
     }
 
     get billingAddressCTA() {
-        return $('com.saucelabs.mydemoapp.android:id/billingAddressCB');
+        return $('id=com.saucelabs.mydemoapp.android:id/billingAddressCB');
+    }
+    
+    get fullNameErrorMessage() {
+        return $('id=com.saucelabs.mydemoapp.android:id/nameErrorTV');
     }
 
-    get fullNameErrorMessage() {
-        return $('com.saucelabs.mydemoapp.android:id/nameErrorTV');
+    get shippingAddressForm() {
+        return $('id=com.saucelabs.mydemoapp.android:id/checkoutInfoCL');
     }
 
     async isPaymentPageDisplayed() {
@@ -30,10 +34,10 @@ class paymentPage {
     }
 
     async enterPaymentDetails(fullName, cardNumber, expDate, securityCode) {
-        await $('com.saucelabs.mydemoapp.android:id/nameET').setValue(fullName);
-        await $('com.saucelabs.mydemoapp.android:id/cardNumberET').setValue(cardNumber);
-        await $('com.saucelabs.mydemoapp.android:id/expirationDateET').setValue(expDate);
-        await $('com.saucelabs.mydemoapp.android:id/securityCodeET').setValue(securityCode);
+        await $('id=com.saucelabs.mydemoapp.android:id/nameET').setValue(fullName);
+        await $('id=com.saucelabs.mydemoapp.android:id/cardNumberET').setValue(cardNumber);
+        await $('id=com.saucelabs.mydemoapp.android:id/expirationDateET').setValue(expDate);
+        await $('id=com.saucelabs.mydemoapp.android:id/securityCodeET').setValue(securityCode);
     }
     
 

@@ -1,3 +1,4 @@
+import productsPage from './products.page.js';
 class sortingPopup {
 
     get sortByAscPrice() {
@@ -28,11 +29,12 @@ class sortingPopup {
     }
 
     async sortAscPrice() {
-        const productPrices = await productPage.productPrices();
+        const productPrices = await productsPage.productPrices();
         const formattedPrice = productPrices.map(price => parseFloat(price.replace('$', '')));
         const isSorted = formattedPrice.every((price, index, arr) => {
             return index === 0 || price >= arr[index - 1];
         })
+        return isSorted;
     }
 
     async sortDescPrice() {
@@ -42,9 +44,10 @@ class sortingPopup {
         const isSorted = formattedPrice.every((price, index, arr) => {
             return index === 0 || price <= arr[index - 1];
         })
+        return isSorted;
     }
-
-    async sortByDescName() {
+    
+    async sortDescName() {
         const productNames = await productsPage.productNames();
         const isSorted = productNames.every((name, index, arr) => {
             return index === 0 || name.localeCompare(arr[index - 1]) <= 0;

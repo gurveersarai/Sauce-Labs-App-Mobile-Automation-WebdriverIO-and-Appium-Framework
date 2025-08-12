@@ -29,8 +29,8 @@ class productDetails {
     }
 
     async checkRadioButtonSelected(radioButtonId) {
-        const radioButton = await $(`~{radioButtonId} color`)
-        if (await radioButton.isSelected()){
+        const radioButton = await $(`~${radioButtonId} color`)
+        if (await radioButton.getAttribute('checked') === 'true') {
             console.log(`${radioButtonId} is selected`);
             return true;
         }

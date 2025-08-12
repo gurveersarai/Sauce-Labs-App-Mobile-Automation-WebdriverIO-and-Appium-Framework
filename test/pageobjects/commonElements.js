@@ -33,10 +33,13 @@ class commonElements {
   }
 
   get ConfirmationWindowConfirm() {
-    return $(
-      '//android.widget.Button[@resource-id="com.example:id/button1" and @text="LOGOUT"]'
-    );
+    return $(`android=new UiSelector().resourceId("android:id/button1")`)
+    ;
   }
+
+  get logoutConfirmationPopup() {
+    return $("id=com.saucelabs.mydemoapp.android:id/alertTitle");
+  } 
 
   get pageTitle() {
     return $("~title");

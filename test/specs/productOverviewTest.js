@@ -10,7 +10,6 @@ describe("Product Overview Functionality", () => {
         // Navigate to the page that requires scrolling
         await appLaunch.appLaunch();
         await console.log('App launched successfully');
-    
     });
 
     afterEach(async () => {

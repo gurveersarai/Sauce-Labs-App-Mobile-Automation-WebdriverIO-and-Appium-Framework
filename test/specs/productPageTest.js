@@ -1,5 +1,6 @@
 import appLaunch from "../helpers/appLaunch";
 import tearDown from "../helpers/tearDown";
+import productsPage from "../pageobjects/products.page";
 import productsDetailsPage from "../pageobjects/productsDetails.page";
 import {expect as chaiExpect} from "chai";
 
@@ -7,6 +8,7 @@ describe("Product Page Functionality", () => {
 
     beforeEach(async () => {
         await appLaunch.appLaunch();
+        await productsPage.productImages[0].click();
     })
 
     afterEach(async () => {
@@ -27,8 +29,8 @@ describe("Product Page Functionality", () => {
         chaiExpect(price).to.be.a('string').that.is.not.empty;
     })
 
-    it("should be able to see the black radio button selected by default", async () => {
-        const blackRadioBtnSelected = await productsDetailsPage.checkRadioButtonSelected('black');
+    it.only("should be able to see the black radio button selected by default", async () => {
+        const blackRadioBtnSelected = await productsDetailsPage.checkRadioButtonSelected('Black');
         chaiExpect(blackRadioBtnSelected).to.be.true;
 
     });

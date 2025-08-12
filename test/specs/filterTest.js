@@ -20,7 +20,7 @@ describe("Filter Functionality", async() => {
         const popup = await $('android=new UiSelector().className("android.view.ViewGroup")');
         const sortText = await popup.$('id=com.saucelabs.mydemoapp.android:id/sortTV').getText();
         chaiExpect(await sortText).to.equal('Sort by:');
-        chaiExpect(await sortingPopup.sortIconDisplayed.isDisplayed()).to.be.true;
+        chaiExpect(await sortingPopup.selectedIcon.isDisplayed()).to.be.true;
 
     }),
 
@@ -40,7 +40,7 @@ describe("Filter Functionality", async() => {
     it('should be able to filter products by descending name', async() => {
         await sortingPopup.sortByDescName.click();
         await sortingPopup.sortingPopupClosed();
-        const sortedName = await sortingPopup.sortByDescName();
-        chaiExpect(sortedName).to.equal(true);
+        const sortedName = await sortingPopup.sortDescName();
+        chaiExpect(sortedName).to.eq(true);
     })
 })

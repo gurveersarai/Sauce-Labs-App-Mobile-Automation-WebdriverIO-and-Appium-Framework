@@ -21,8 +21,8 @@ describe("Cart Functionality", () => {
        })
 
      it('should be able to see page title present',async () => {
-          await cartPage.checkoutTitle.waitForDisplayed();
-          const title = await cartPage.checkoutTitle.getText();
+          await cartPage.cartTitle.waitForDisplayed();
+          const title = await cartPage.cartTitle.getText();
           chaiExpect(title).to.equal('My Cart');
      });
 

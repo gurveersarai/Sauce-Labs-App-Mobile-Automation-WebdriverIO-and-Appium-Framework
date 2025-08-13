@@ -3,7 +3,7 @@ class productDetails {
         return $('id=com.saucelabs.mydemoapp.android:id/productTV');
     }
 
-    get quantityAccount() {
+    get quantityAmount() {
         return $('id=com.saucelabs.mydemoapp.android:id/noTV')
     }
 
@@ -16,8 +16,8 @@ class productDetails {
     }
 
     async alterQuantity(quantityID, amount) {
-        const quantityButton = await $(`~{quantityID} item quantity`);
-        const currentQuantity = await this.quantityAccount.getText();
+        const quantityButton = await $(`~${quantityID} item quantity`);
+        const currentQuantity = await this.quantityAmount.getText();
         for(let i=0; i < amount; i++) {
             await quantityButton.click();
             if (quantityID === 'decrease' && parseInt(currentQuantity) < amount) {
@@ -25,37 +25,42 @@ class productDetails {
                 break;
             }
         }
-        return await parseInt(quantityAccount.getText());
+        return await parseInt(await this.quantityAmount.getText());
     }
 
     async checkRadioButtonSelected(radioButtonId) {
         const radioButton = await $(`~${radioButtonId} color`)
-        if (await radioButton.getAttribute('checked') === 'true') {
+        const exists = await radioButton.isExisting();
+
+        const selectionIndicator = await $(
+            `//*[@content-desc="${radioButtonId} color"]/..//*[@content-desc="Indicates when color is selected"]`
+        );
+        
+        // if (await exists == false) {
+        //     console.log(`${radioButtonId} does not exist`);
+        //     return null;
+        // }
+        if (await selectionIndicator.isExisting()) {
             console.log(`${radioButtonId} is selected`);
             return true;
-        }
-        else if (!await radioButton.isExisting()) {
-            console.log(`${radioButtonId} does not exist`);
-            return null;
         }
         else {
             console.log(`${radioButtonId} is not selected`);
             return false;
         }
+    
     }
 
     async selectRadioButton(radioButtonId) {
-        const radioButton = await $(`~{radioButtonId} color`)
-        const radioisSelected = checkRadioButtonSelected(radioButtonId);
-        if(radioisSelected == false) {
+        const radioButton = await $(`~${radioButtonId} color`)
+        if(await radioButton.isExisting() && await this.checkRadioButtonSelected(radioButtonId) === false) {
             await radioButton.click();
-            this.checkRadioButtonSelected(radioButtonId);
         }
     }
 
     async addToCart() {
-        console.log("Current Quantity: " + parseInt(await this.quantityAccount.getText()));
-        if (parseInt(await this.quantityAccount.getText()) >= 1 ) {
+        console.log("Current Quantity: " + parseInt(await this.quantityAmount.getText()));
+        if (parseInt(await this.quantityAmount.getText()) >= 1 ) {
         await this.addToCartButton.click();
         console.log("Products added to cart"); 
         }

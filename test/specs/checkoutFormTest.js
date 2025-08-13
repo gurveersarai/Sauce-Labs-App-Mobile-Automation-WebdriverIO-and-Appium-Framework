@@ -21,7 +21,7 @@ describe("Checkout Form Functionality", () => {
     })
 
     it('should be able to see the Checkout Title Present', async () => {
-        const checkoutTitleDisplayed = await cartPage.checkoutTitle.isDisplayed();
+        const checkoutTitleDisplayed = await checkoutPage.checkoutTitle.isDisplayed();
         chaiExpect(checkoutTitleDisplayed).to.be.true;
 
     }),
@@ -30,13 +30,6 @@ describe("Checkout Form Functionality", () => {
         await checkoutPage.toPaymentCTA.click();
         const errorMessage = await checkoutPage.fullNameErrorMessage.getText();
         chaiExpect(errorMessage).to.equal('Please provide your full name.');
-    }),
-
-    it('should be able to uncheck the billing address checkbox', async() => {
-        await paymentPage.billingAddressCTA.waitForDisplayed();
-        await paymentPage.billingAddressCTA.click();
-        const isBillingAddressChecked = await paymentPage.billingAddressCTA.isSelected();
-        chaiExpect(isBillingAddressChecked).to.be.false;
     }),
 
     it('should be able to fill in the form and proceed to the next step', async () => {

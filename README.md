@@ -1,6 +1,6 @@
 # Sauce Labs App Mobile Automation Framework 
-**Using WebdriverIO, Appium, Mocha and Chai**
-**Test results are displayed in a mochawesome report**
+**Using WebdriverIO, Appium, Mocha and Chai. Test results are displayed in a simple mochawesome report.**
+
 
 ## Prerequisites
 

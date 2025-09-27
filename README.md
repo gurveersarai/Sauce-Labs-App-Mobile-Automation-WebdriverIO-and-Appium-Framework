@@ -50,5 +50,5 @@ npx wdio run wdio.conf.js
 - Capture screenshots on failures
 - Keep tests atomic and independent
 - Use page object model or abstraction for maintainability
-- Use page object model or abstraction for maintainability
+  
 

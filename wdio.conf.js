@@ -1,3 +1,5 @@
+import path from 'path'
+const androidAppPath = path.join(process.cwd(), 'app/mda-2.2.0-25.apk');
 export const config = {
   //
   // ====================
@@ -5,6 +7,8 @@ export const config = {
   // ====================
   // WebdriverIO supports running e2e tests as well as unit and component tests.
   runner: "local",
+
+  
   //
   // ==================
   // Specify Test Files
@@ -41,7 +45,7 @@ export const config = {
   // and 30 processes will get spawned. The property handles how many capabilities
   // from the same test should run tests.
   //
-  maxInstances: 10,
+  maxInstances: 1,
   //
   // If you have trouble getting all important capabilities together, check out the
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -51,10 +55,15 @@ export const config = {
     {
       // capabilities for local Appium web tests on an Android Emulator
       platformName: "Android",
-      browserName: "Chrome",
-      "appium:deviceName": "Pixel 7 API 31",
-      "appium:platformVersion": "12.0",
+      "appium:deviceName": "Pixel 8 API 34",
+      "appium:platformVersion": "14.0",
       "appium:automationName": "UiAutomator2",
+      "appium:app": androidAppPath, // Path to the Android app
+      "appium:chromedriverAutoDownload": true,
+      "appium:appWaitDuration": 30000,
+      "appium:appActivity": "com.saucelabs.mydemoapp.android.view.activities.SplashActivity",
+      "appium:appWaitActivity": "com.saucelabs.mydemoapp.android.view.activities.*",  // Automatically download the ChromeDriver
+      "appium:noReset": false, // Do reset app state between tests
     },
   ],
 
@@ -105,7 +114,10 @@ export const config = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-  services: ["appium"],
+  services: ['appium'],
+  hostname: 'localhost',
+  port: 4723,
+  
   //
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber
@@ -128,7 +140,15 @@ export const config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  reporters: ["spec"],
+  reporters: [
+    ['mochawesome', {
+      outputDir: '.mochawesome-reports',
+      outputFileFormat: opts => `results-${opts.cid}.${opts.capabilities.platformName}.json`,
+      quiet: true,
+      json: true,
+      html: false,
+    }]
+  ],
 
   // Options to be passed to Mocha.
   // See the full list at http://mochajs.org/
